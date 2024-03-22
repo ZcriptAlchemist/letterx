@@ -1,0 +1,37 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+.input-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3b3b3b;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  gap: 1rem;
+
+  width: 90vw;
+}
+
+.main-input {
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  height: 3rem;
+  width: 90vw;
+}
+
+.result-box {
+  overflow: scroll;
+}
