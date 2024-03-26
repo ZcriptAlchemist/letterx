@@ -1,67 +1,17 @@
-// const PORT = 8000;
-// const express = require("express");
-// const cors = require("cors");
-// const app = express();
-// app.use(cors());
-// app.use(express.json());
-// require("dotenv").config();
-
-// const { GoogleGenerativeAI } = require("@google/generative-ai");
-
-// const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-
-// app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
-// import - changes
-
-// import express from "express";
-// import cors from "cors";
-
+// import dotenv from "dotenv";
 // dotenv.config();
-
-// const PORT = 8000;
-// const app = express();
-// app.use(cors());
-// app.use(express.json());
-
-// const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-
-// app.post("/gemini", async (req, res) => {
-//   console.log(req.body.message);
-//   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-//   //   const chat = model.startChat({
-//   //     message: req.body.message,
-//   //   });
-
-//   const msg = req.body.message;
-//   const result = await msg;
-//   const response = await result.response;
-//   const text = response.text();
-//   res.send(text);
-// });
-
-// app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
-// copy from AI studio
-// node --version # Should be >= 18
-// npm install @google/generative-ai
-
-// const {
-//   GoogleGenerativeAI,
-//   HarmCategory,
-//   HarmBlockThreshold,
-// } = require("@google/generative-ai");
-
-import dotenv from "dotenv";
 import {
   GoogleGenerativeAI,
   HarmCategory,
   HarmBlockThreshold,
 } from "@google/generative-ai";
 
+// node --version # Should be >= 18
+// npm install @google/generative-ai
+
+const apiKey = import.meta.env.VITE_API_KEY;
 const MODEL_NAME = "gemini-1.0-pro";
-const API_KEY = process.env.API_KEY;
+const API_KEY = apiKey;
 
 async function run() {
   const genAI = new GoogleGenerativeAI(API_KEY);
@@ -216,7 +166,7 @@ async function run() {
     {
       text: "output: 28, VOC road, Erode - 24\n\nSeptember 27, 2023\n\nDear Ritul,\n\nI hope you are doing well. I know you are angry with me about what has happened at your birthday party. I wish to apologize and I want you to forgive me. I don't our friendship to spoil.\n\nI know whatever has happened was not right. The thing is I was not in a mood that day. My exams were not good and my mother really scolded me. I shouldn't have behaved with you like that. I promise not to behave like that the next time. I am really sorry about what I said.\n\nHope you pardon me for my mistakes. Let's meet if possible! Eagerly waiting for your response!\n\nWith love,\nYours truly,\nWasim.",
     },
-    { text: "input: generate leave letter cuz my legs are broken" },
+    { text: "input: who are you?" },
     { text: "output: " },
   ];
 
@@ -229,5 +179,7 @@ async function run() {
   const response = result.response;
   console.log(response.text());
 }
+
+run();
 
 export default run;
