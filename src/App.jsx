@@ -171,7 +171,9 @@ function App() {
       {
         text: "output: 28, VOC road, Erode - 24\n\nSeptember 27, 2023\n\nDear Ritul,\n\nI hope you are doing well. I know you are angry with me about what has happened at your birthday party. I wish to apologize and I want you to forgive me. I don't our friendship to spoil.\n\nI know whatever has happened was not right. The thing is I was not in a mood that day. My exams were not good and my mother really scolded me. I shouldn't have behaved with you like that. I promise not to behave like that the next time. I am really sorry about what I said.\n\nHope you pardon me for my mistakes. Let's meet if possible! Eagerly waiting for your response!\n\nWith love,\nYours truly,\nWasim.",
       },
-      { text: request },
+      {
+        text: `${request} and get me the data in html <p> tags and don't mention "html" anywhere`,
+      },
       { text: "output: " },
     ];
 
@@ -185,6 +187,11 @@ function App() {
     console.log(result.response);
     setResData(response.text());
     console.log(resData);
+    // const data = resData.split(" ");
+    // const first = [];
+    // for(let i = 0; i<10; i++) {
+    //   first =
+    // }
   };
 
   return (
@@ -204,12 +211,9 @@ function App() {
           className="main-input"
           placeholder="write me a leave letter"
         />
-        {!error && (
-          <button onClick={() => getResData(value)} className="err-btn">
-            shoot
-          </button>
-        )}
-        {error && <button className="err-btn">clear</button>}
+        <button onClick={() => getResData(value)} className="shoot-btn">
+          shoot
+        </button>
       </div>
     </>
   );

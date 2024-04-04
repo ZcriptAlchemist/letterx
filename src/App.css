@@ -1,15 +1,23 @@
 #root {
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  text-align: justify;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 h1 {
   font-size: 5rem;
+  margin: 0px;
 }
 
 .input-box {
@@ -20,7 +28,6 @@ h1 {
   padding: 1rem 2rem;
   border-radius: 50px;
   gap: 1rem;
-
   width: 90vw;
 }
 
@@ -32,14 +39,16 @@ h1 {
   width: 90vw;
 }
 
-/* .result-box {
-  overflow: scroll;
-} */
-
 .content {
-  /* align-content: justify; */
+  background-color: rgb(41, 41, 41);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  padding: 1.5rem 2rem;
   font-size: 1.2rem;
-  height: 45%;
-  width: 70%;
+  height: 50vh;
+  width: 70vw;
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a1a rgb(41, 41, 41);
   overflow-y: scroll;
+  overflow-x: hidden;
 }
