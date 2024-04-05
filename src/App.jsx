@@ -10,15 +10,19 @@ import {
 
 function App() {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const apiKey = import.meta.env.VITE_API_KEY;
   const [resData, setResData] = useState("");
   const MODEL_NAME = "gemini-1.0-pro";
   const API_KEY = apiKey;
 
-  const getResData = async (request) => {
-    console.log(request);
+  const getResData = async () => {
+    console.log(value);
+    // console.log(request);
+    setResData("");
     setValue("");
+    setLoading(true);
+    console.log(loading);
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
@@ -36,15 +40,18 @@ function App() {
       },
       {
         category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        // threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        threshold: HarmBlockThreshold.BLOCK_VERY_HIGH_AND_ABOVE,
       },
       {
         category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        // threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        threshold: HarmBlockThreshold.BLOCK_VERY_HIGH_AND_ABOVE,
       },
       {
         category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        // threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        threshold: HarmBlockThreshold.BLOCK_VERY_HIGH_AND_ABOVE,
       },
     ];
 
@@ -172,7 +179,7 @@ function App() {
         text: "output: 28, VOC road, Erode - 24\n\nSeptember 27, 2023\n\nDear Ritul,\n\nI hope you are doing well. I know you are angry with me about what has happened at your birthday party. I wish to apologize and I want you to forgive me. I don't our friendship to spoil.\n\nI know whatever has happened was not right. The thing is I was not in a mood that day. My exams were not good and my mother really scolded me. I shouldn't have behaved with you like that. I promise not to behave like that the next time. I am really sorry about what I said.\n\nHope you pardon me for my mistakes. Let's meet if possible! Eagerly waiting for your response!\n\nWith love,\nYours truly,\nWasim.",
       },
       {
-        text: `${request} and get me the data in html <p> tags and don't mention "html" anywhere`,
+        text: `write me a ${value} and get me the data in html <p> tags and don't mention "html" anywhere`,
       },
       { text: "output: " },
     ];
@@ -186,23 +193,26 @@ function App() {
     const response = result.response;
     console.log(result.response);
     setResData(response.text());
+    setLoading(false);
+    console.log(loading);
     console.log(resData);
-    // const data = resData.split(" ");
-    // const first = [];
-    // for(let i = 0; i<10; i++) {
-    //   first =
-    // }
+    console.log(loading);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      getResData();
+    }
   };
 
   return (
     <>
-      <div className="head">
+      <section className="head">
         <h1>LetterX 📬</h1>
         <h2>your personal letter writer powered by Google's Gemini LLM </h2>
-      </div>
-      <Content resData={resData} />
-
-      <div className="input-box">
+      </section>
+      <Content loading={loading} resData={resData} />
+      <section className="input-box">
         <input
           onChange={(e) => {
             setValue(e.target.value);
@@ -210,11 +220,18 @@ function App() {
           value={value}
           className="main-input"
           placeholder="write me a leave letter"
+          onKeyDown={handleKeyDown}
         />
-        <button onClick={() => getResData(value)} className="shoot-btn">
+        <button onClick={() => getResData} className="shoot-btn">
           shoot
         </button>
-      </div>
+      </section>
+      <p className="credits">
+        made with ♥ by suhail.{" "}
+        <a href="https://github.com/suhailmshaik" target="_blank">
+          github
+        </a>
+      </p>
     </>
   );
 }
