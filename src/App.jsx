@@ -26,12 +26,9 @@ function App() {
         setResData("enter a valid prompt");
         return;
       }
-      console.log(value);
-      // console.log(request);
       setResData("");
       setValue("");
       setLoading(true);
-      console.log(loading);
       const genAI = new GoogleGenerativeAI(API_KEY);
       const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
@@ -200,15 +197,17 @@ function App() {
       });
 
       const response = result.response;
-      console.log(result.response);
       setResData(response.text());
       setLoading(false);
-      console.log(loading);
-      console.log(resData);
-      console.log(loading);
     } catch (error) {
-      console.log(error);
-      setResData("error occured, try with another input");
+      if (error && error.code === "SAFETY") {
+        setResData(
+          "Your input was blocked due to safety concerns. Please try again with a different input."
+        );
+      } else {
+        setResData("An error occurred. Please try again with another prompt.");
+      }
+      setLoading(false);
     }
   };
 
@@ -241,7 +240,7 @@ function App() {
       </section>
       <p className="credits">
         made with ♥ by suhail.{" "}
-        <a href="https://github.com/suhailmshaik" target="_blank">
+        <a href="https://github.com/suhailmshaik/letterx" target="_blank">
           github
         </a>
       </p>

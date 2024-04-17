@@ -7,8 +7,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 100%;
-  min-height: 95vh;
+  max-width: 95%;
+  min-height: 90vh;
 }
 
 .head {
@@ -19,7 +19,7 @@
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 4rem;
   margin: 0px;
   text-align: center;
 }
@@ -33,10 +33,11 @@ h1 {
   border-radius: 50px;
   gap: 1rem;
   width: 90vw;
+  height: 1.5rem;
 }
 
 .main-input {
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: none;
   outline: none;
   height: 3rem;
@@ -49,8 +50,8 @@ h1 {
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
   font-size: 1.2rem;
-  height: 50vh;
-  width: 70vw;
+  height: 40vh;
+  width: 75vw;
   scrollbar-width: thin;
   scrollbar-color: #1a1a1a rgb(41, 41, 41);
   overflow-y: scroll;
