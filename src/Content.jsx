@@ -10,10 +10,13 @@ const Content = ({ loading, resData }) => {
 
   const copyHandler = () => {
     const paras = Array.from(document.querySelectorAll(".resHTML p"));
+    console.log(paras);
 
     const newTextToCopy = paras.map((para) => {
       return `${para.textContent} \n \n`;
     });
+
+    console.log(newTextToCopy);
     setTextToCopy(newTextToCopy);
 
     console.log(textToCopy);

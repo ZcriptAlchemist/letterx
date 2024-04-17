@@ -6,6 +6,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-height: 95vh;
 }
 
 .head {
@@ -18,6 +21,7 @@
 h1 {
   font-size: 5rem;
   margin: 0px;
+  text-align: center;
 }
 
 .input-box {
@@ -77,4 +81,10 @@ h1 {
 .credits > a {
   color: rgba(255, 255, 255, 0.87);
   text-decoration: underline;
+}
+
+/* base done */
+
+.head > h2 {
+  text-align: center;
 }
