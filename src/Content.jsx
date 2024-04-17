@@ -18,16 +18,9 @@ const Content = ({ loading, resData }) => {
     setTextToCopy(newTextToCopy);
     setCopyTxt("copied ✅");
 
-    // console.log(textToCopy);
-
-    // textToCopy.forEach((element) => {
-    //   console.log(element);
-    // });
-
     setTimeout(() => {
       setCopyTxt("copy");
     }, 2000);
-    console.log(textToCopy);
   };
 
   useEffect(() => {
